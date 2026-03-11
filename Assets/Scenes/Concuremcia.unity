@@ -734,11 +734,11 @@ MonoBehaviour:
   useThread: 0
   useTask: 0
   useCoroutine: 0
-  sincronorSphere: {fileID: 0}
-  threadSphere: {fileID: 0}
-  taskSphere: {fileID: 0}
-  coroutineSphere: {fileID: 0}
-  mainCube: {fileID: 0}
+  sincronorSphere: {fileID: 354662671}
+  threadSphere: {fileID: 1762053264}
+  taskSphere: {fileID: 205634333}
+  coroutineSphere: {fileID: 1030394367}
+  mainCube: {fileID: 2091849505}
 --- !u!4 &1423249800
 Transform:
   m_ObjectHideFlags: 0
