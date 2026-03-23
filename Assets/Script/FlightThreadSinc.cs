@@ -6,7 +6,7 @@ using Unity.VisualScripting;
 using UnityEngine.XR.Interaction.Toolkit.AffordanceSystem.Receiver.Primitives;
 using System.IO;
 
-public class FlightThreadNoSinc : MonoBehaviour {
+public class FlightThreadSinc : MonoBehaviour {
     public float speed = 50f;
     public float rotationSpeed = 100f;
     public Transform cameraTransform;
@@ -26,6 +26,8 @@ public class FlightThreadNoSinc : MonoBehaviour {
 
     //Bandera de control sobre lectura
     public bool read = false;
+    public bool write = false;
+    private object filelock = new object();
     //Ruta de almacenamiento
     string filepath;
 
@@ -68,12 +70,15 @@ public class FlightThreadNoSinc : MonoBehaviour {
         float yaw = movementInput.x * rotationSpeed * Time.deltaTime;
         this.transform.Rotate(0, yaw, 0);
 
-        //ACTIVIDAD 3: Metodo para lectura del archivo
-        TryReadFile();
+        //ACTIVIDAD 3: Sincronizar hilos
+        if (write && !read) 
+        {
+            TryReadFile();
+            read = true;
+        }
     }
 
-    public void SimulateTurbulence(float time) 
-    {
+    public void SimulateTurbulence(float time) {
         turbulenceForces.Clear();
         //Repeticiones
         for (int i = 0; i < turbulenceIterations; i++) {
@@ -92,34 +97,42 @@ public class FlightThreadNoSinc : MonoBehaviour {
         //Señal en consola de inicio del hilo
         Debug.Log("Iniciando simulacion de turbulencia");
 
+        Debug.Log("Escribiendo archivo");
+
         //ACTIVIDAD 3: Metodo para lectura del archivo
         //Escritura del archivo
 
-
-        //Escritura del archivo
-        using (StreamWriter writer = new StreamWriter(filepath,false))
-        {
-            foreach (var force in turbulenceForces) 
-            {
-                writer.WriteLine(force.ToString());
+        lock (filelock) {
+            //Escritura del archivo
+            using (StreamWriter writer = new StreamWriter(filepath, false)) {
+                foreach (var force in turbulenceForces) {
+                    writer.WriteLine(force.ToString());
+                }
+                writer.Flush();
             }
-            writer.Flush();
         }
 
         Debug.Log("Archivo escrito");
 
         //Simulacion completa
         isTurbulenceRunning = false;
+        write = true;  
     }
-    void TryReadFile()
-    {
-        try
-        {
-            string content = File.ReadAllText(filepath);
-            Debug.Log("Archivo leido " + content);
-        }
-        catch (IOException ex)
-        {
+    void TryReadFile() {
+        try {
+            lock (filelock) 
+            {
+                if (File.Exists(filepath)) 
+                {
+                    string content = File.ReadAllText(filepath);
+                    Debug.Log("Archivo leido " + content);
+                } 
+                else 
+                {
+                    Debug.LogError("Ocurrio un problema");
+                }
+            }
+        } catch (IOException ex) {
             Debug.LogError("Error de acceso a archivo " + ex.Message);
         }
     }
