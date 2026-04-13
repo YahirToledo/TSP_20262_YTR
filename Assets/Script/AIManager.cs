@@ -57,6 +57,30 @@ public class AIManager : MonoBehaviour
                 break;
             }
         }
+
+        //Si el jugador es atrapado
+        if (playerCaught) 
+        {
+            TeleportPlayerToEntrance();
+            RelocateAllNPC();
+            return;
+        }
+
+        //Jugador en la SALIDA
+        if ((playerPos - exit.position).sqrMagnitude < exitRangeSqr)
+        {
+            gameWon = true;
+            Debug.Log("Felicidades ganaste!!!");
+        }
+
+        //Persecucion
+        foreach (var agent in agents) 
+        {
+            if (agent.enabled && !agent.isStopped) 
+            {
+                agent.SetDestination(playerPos);
+            }
+        }
     }
 
     //Metodo ara llevar a player a la entrada
