@@ -6,6 +6,7 @@ using Firebase.Database;
 using Firebase.Extensions;
 using Unity.VisualScripting;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
 
 public class BD : MonoBehaviour {
     public DatabaseReference reference;
@@ -65,7 +66,6 @@ public class BD : MonoBehaviour {
             else if (TaskExtension.IsCompleted) {
                 DataSnapshot snapshot = TaskExtension.Result;
                 string value = snapshot.Value.ToString();
-                //Debug.Log($"{value}");
                 Debug.Log("Tipo de valor obtenido " + snapshot.Value.GetType());
                 Debug.Log("Valor: " + value);
             }
@@ -75,16 +75,20 @@ public class BD : MonoBehaviour {
         });
 
         //Carga de valores anidados con clave unica
-        reference.Child("Nombre").GetValueAsync().ContinueWithOnMainThread(TaskExtension => {
+        reference.Child("Nombre").GetValueAsync().ContinueWithOnMainThread(
+            TaskExtension => {
             if (TaskExtension.IsFaulted) {
                 Debug.Log("Error al obtener datos" + TaskExtension.Exception);
             } 
             else if (TaskExtension.IsCompleted) {
                 DataSnapshot snapshot2 = TaskExtension.Result;
-                string value = snapshot2.Value.ToString();
-                //Debug.Log($"{value}");
-                Debug.Log("Tipo de valor obtenido " + snapshot2.Value.GetType());
-                Debug.Log("Valor: " + value);
+                //Recorrer todos los hijos de Registro Nombre y obtener los valores
+                foreach (DataSnapshot childSnapshot in snapshot2.Children) {
+                    string value2 = childSnapshot.Value.ToString();
+                    //Debug.Log($"{value}");
+                    Debug.Log("Tipo de valor obtenido " + childSnapshot.Value.GetType());
+                    Debug.Log("Valor: " + value2);
+                }
             } 
             else {
                 Debug.Log("Registro con error");
@@ -93,6 +97,30 @@ public class BD : MonoBehaviour {
             
         );
 
+        //Carga tipo json
+        reference.Child("Usuario").GetValueAsync().ContinueWithOnMainThread(TaskExtension => {
+            if (TaskExtension.IsFaulted) {
+                Debug.Log("Error al obtener datos" + TaskExtension.Exception);
+            } 
+            else if (TaskExtension.IsCompleted) 
+            {
+                DataSnapshot snapshot3 = TaskExtension.Result;
+
+                //Convertir el jason a un diccionario
+                Dictionary<string, object> userData = JsonConvert.DeserializeObject<Dictionary<string, object>>(snapshot3.GetRawJsonValue());
+                Debug.Log("Tipo de valor obtenido " + userData.GetType());
+                string nombre = (string)userData["UserName"];
+                string email = (string)userData["Email"];
+                Debug.Log($"Nombre de usuario {nombre}, correo {email}");
+                
+            } 
+            else 
+            {
+                Debug.Log("Registro con error");
+            }
+        }
+
+        );
     }
 
 }
