@@ -827,7 +827,7 @@ MonoBehaviour:
   chatText: {fileID: 580050347}
   enviarButton: {fileID: 1129558812}
   unityChanAnimator: {fileID: 1879313430}
-  apiKey: REMOVED_TOKEN
+  apiKey: 
 --- !u!4 &791048176
 Transform:
   m_ObjectHideFlags: 0
