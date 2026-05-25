@@ -823,11 +823,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a148d180d4ab3714097a4a4e2b7bf01c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputField: {fileID: 0}
-  chatText: {fileID: 0}
-  enviarButton: {fileID: 0}
-  unityChanAnimator: {fileID: 0}
-  apiKey: 
+  inputField: {fileID: 363030683}
+  chatText: {fileID: 580050347}
+  enviarButton: {fileID: 1129558812}
+  unityChanAnimator: {fileID: 1879313430}
+  apiKey: REMOVED_TOKEN
 --- !u!4 &791048176
 Transform:
   m_ObjectHideFlags: 0
@@ -1803,6 +1803,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1800116661}
   m_CullTransparentMesh: 1
+--- !u!95 &1879313430 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 4127175938517750566, guid: d9e337dc6acbbda468331feab73252fa, type: 3}
+  m_PrefabInstance: {fileID: 375541520}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
