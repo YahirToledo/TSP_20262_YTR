@@ -13,22 +13,22 @@ ModelImporter:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
       name: void_ambientocclusion
-    second: {fileID: 2800000, guid: 54bea99933150e24a9e5c7c6ad135589, type: 3}
+    second: {fileID: 2800000, guid: d623ce5098a73af4a9bf20bff0ea181b, type: 3}
   - first:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
       name: void_diffuse
-    second: {fileID: 2800000, guid: 03383e736f15e0e48aae95b9140b8218, type: 3}
+    second: {fileID: 2800000, guid: 7fc1793d4d3467b46af84c335767f36f, type: 3}
   - first:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
       name: void_normal
-    second: {fileID: 2800000, guid: ca422857419f2fe4795009a1dd349d67, type: 3}
+    second: {fileID: 2800000, guid: 2e7447c9383b0d64f91e59c2298a4130, type: 3}
   - first:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
       name: void_specular
-    second: {fileID: 2800000, guid: ce3957386c54b474c99c49ab40b27a5d, type: 3}
+    second: {fileID: 2800000, guid: e8131d907a2ce174898ab98698dc490c, type: 3}
   materials:
     materialImportMode: 2
     materialName: 0

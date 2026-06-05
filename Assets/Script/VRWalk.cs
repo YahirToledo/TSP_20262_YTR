@@ -1,8 +1,8 @@
 using UnityEngine;
 
-public class VRWalk : MonoBehaviour
+public class VRwalk : MonoBehaviour
 {
-    //Atributos/Variables de clase
+    //Attributos/variables de clase
 
     public Transform vrCamera;
     public float angulo = 30.0f;
@@ -20,15 +20,15 @@ public class VRWalk : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (vrCamera.eulerAngles.x > angulo && vrCamera.eulerAngles.x < 60.0f) 
+        if (vrCamera.eulerAngles.x >= angulo && vrCamera.eulerAngles.x < 60.0f)
         {
             move = true;
-        } 
-        else 
+        }
+        else
         {
             move = false;
         }
-        if (move) 
+        if (move)
         {
             Vector3 direccion = vrCamera.TransformDirection(Vector3.forward);
             controller.SimpleMove(direccion*speed);

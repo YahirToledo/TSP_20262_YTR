@@ -597,7 +597,7 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -608,7 +608,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 201565630}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -1772,19 +1772,7 @@ MonoBehaviour:
   radialImage: {fileID: 772135871}
   onFillComplete:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1590254444}
-        m_TargetAssemblyTypeName: EventUI, Assembly-CSharp
-        m_MethodName: CycleText
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: -1
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!1 &832575517
 GameObject:
   m_ObjectHideFlags: 0
@@ -1834,11 +1822,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &842910134 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 2719860956909498752, guid: 9658934f4af63af46926fcf8cd548221, type: 3}
-  m_PrefabInstance: {fileID: 1366301081}
-  m_PrefabAsset: {fileID: 0}
 --- !u!20 &842910139 stripped
 Camera:
   m_CorrespondingSourceObject: {fileID: 4745020718956532801, guid: 9658934f4af63af46926fcf8cd548221, type: 3}
@@ -2255,10 +2238,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3573f12248bd0694b8cad51570b563d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  vrCamera: {fileID: 842910134}
-  angulo: 30
-  speed: 3
-  move: 0
 --- !u!1 &1184333672
 GameObject:
   m_ObjectHideFlags: 0
